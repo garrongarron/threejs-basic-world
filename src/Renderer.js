@@ -1,7 +1,7 @@
 import scene from './Scene.js'
 import camera from './basic/Camera.js'
 import machine from './basic/Machine.js'
-import setControls from './basic/Controls.js'
+// import setControls from './basic/Controls.js'
 
 let renderer = new THREE.WebGLRenderer(
     { 
@@ -10,6 +10,7 @@ let renderer = new THREE.WebGLRenderer(
         antialias: true 
     }
 );
+renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;//THREE.BasicShadowMap;
 renderer.setClearColor(0x5555ff);
@@ -20,7 +21,7 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight)
 }, false);
-setControls(camera, renderer)
+// setControls(camera, renderer)
 machine.addCallback(() => {
     renderer.render(scene, camera);
 })

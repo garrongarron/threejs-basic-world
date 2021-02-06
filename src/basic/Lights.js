@@ -1,5 +1,5 @@
 let directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1.0);
-directionalLight.position.set(20, 100, 10);
+directionalLight.position.set(20, 50, 50);
 directionalLight.target.position.set(0, 0, 0);
 directionalLight.castShadow = true;
 directionalLight.shadow.bias = -0.001;
