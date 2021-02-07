@@ -10,13 +10,21 @@ let targetHeight = 3
 let radio = 10
 let up = 3
 
+let camGap = -30
+let valance = 0
+
+document.addEventListener('mousemove', (e)=>{
+    let semiScreen = window.innerWidth/2
+    valance = (e.clientX-semiScreen)/semiScreen
+})
+
 machine.addCallback(() => {
 
     if (target) {
-        let x = target.position.x - Math.sin(target.rotation.y+20*Math.PI/180) * radio
+        let x = target.position.x - Math.sin(target.rotation.y+camGap*valance*Math.PI/180) * radio
         camera.position.x = math.lerp(camera.position.x, x, interpolation)
 
-        let z = target.position.z - Math.cos(target.rotation.y+20*Math.PI/180) * radio
+        let z = target.position.z - Math.cos(target.rotation.y+camGap*valance*Math.PI/180) * radio
         camera.position.z = math.lerp(camera.position.z, z, interpolation)
 
         let point = {
