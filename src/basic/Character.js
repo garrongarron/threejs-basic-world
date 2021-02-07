@@ -1,5 +1,3 @@
-// import * as THREE from '../build/three.module.js';
-// import { FBXLoader } from '../../js/FBXLoader.js';
 import machine from './Machine.js'
 import fileList from "../models/SwordAndShield/FileList.js";
 
@@ -51,15 +49,19 @@ let loadCharacter = (scene, callback) => {
     }
     model = promises.shift()
     Promise.all(promises).then((a) => {
-        load(model)
-        callback(model)
+        console.log('ALL LOADED');
+        setTimeout(() => {
+            load(model)
+            callback(model)
+        }, 1000*3);
+
     })
 }
 
 machine.addCallback(() => {
     delta = clock.getDelta();
     if (mixer) mixer.update(delta);
-    if(character){
+    if (character) {
         // console.log(character.position);
     }
 })

@@ -15,7 +15,11 @@ let controller = {
     down: () => console.log('down'),
     left: () => console.log('left'),
     right: () => console.log('right'),
-    noKeyPressed: () => console.log('noKeyPressed'),
+    noKeyPressed: () => {},
+    stealth: () => {},
+    sprint: () => {},
+    attack: () => {},
+    jump: () => {},
 }
 
 let setController = (m) => {
@@ -59,6 +63,22 @@ machine.addCallback(() => {
     }
     if (keyListener.isPressed(68)) {
         controller.right(deltaTime)
+        noKeyPressed = false
+    }
+    if (keyListener.isPressed(16)) {
+        controller.sprint(deltaTime)
+        noKeyPressed = false
+    }
+    if (keyListener.isPressed(32)) {
+        controller.stealth(deltaTime)
+        noKeyPressed = false
+    }
+    if (keyListener.isPressed(69)) {
+        controller.attack(deltaTime)
+        noKeyPressed = false
+    }
+    if (keyListener.isPressed(81)) {
+        controller.jump(deltaTime)
         noKeyPressed = false
     }
     if(noKeyPressed){

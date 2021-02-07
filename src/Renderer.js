@@ -2,6 +2,7 @@ import scene from './Scene.js'
 import camera from './basic/Camera.js'
 import machine from './basic/Machine.js'
 // import setControls from './basic/Controls.js'
+import './UI/Keys.js'
 
 let renderer = new THREE.WebGLRenderer(
     { 

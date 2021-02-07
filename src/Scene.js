@@ -7,6 +7,7 @@ import plane from './objects/Plane.js'
 import box from './objects/Box.js'
 import setCharacter, { mode, setController } from './basic/CharacterController.js';
 import loadCharacter from './basic/Character.js'
+import loadTrees from './objects/Trees.js'
 
 const scene = new THREE.Scene();
 
@@ -24,6 +25,8 @@ if (false) {
 }
 
 
+//trees
+loadTrees(scene)
 //ground
 scene.add(plane);
 

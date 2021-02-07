@@ -19,9 +19,13 @@ class KeyListener {
     }
     down(e){
         this.keys[e.keyCode] = true 
+        if(e.keyCode==18) e.preventDefault()
+        return false
     }
     up(e){
         this.keys[e.keyCode] = false
+        if(e.keyCode==18) e.preventDefault()
+        return false
     }
     isPressed(keyCode){
         return (this.keys[keyCode])?true:false

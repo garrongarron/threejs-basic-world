@@ -3,27 +3,29 @@ import machine from './Machine.js'
 import math from './Math.js'
 
 let target = null
-let interpolation = .1
-let targetHeight = 2
+let interpolation = .5
+let targetHeight = 3
 
 //ofset
 let radio = 10
-let up = 5
+let up = 3
 
 machine.addCallback(() => {
 
     if (target) {
-        let x = target.position.x - Math.sin(target.rotation.y) * radio
+        let x = target.position.x - Math.sin(target.rotation.y+20*Math.PI/180) * radio
         camera.position.x = math.lerp(camera.position.x, x, interpolation)
 
-        let z = target.position.z - Math.cos(target.rotation.y) * radio
+        let z = target.position.z - Math.cos(target.rotation.y+20*Math.PI/180) * radio
         camera.position.z = math.lerp(camera.position.z, z, interpolation)
 
-        camera.lookAt(target.position.x, target.position.y + targetHeight, target.position.z)
+        let point = {
+            x:target.position.x + Math.sin(target.rotation.y) * radio*20,
+            z:target.position.z + Math.cos(target.rotation.y) * radio*20
+        }
+        camera.lookAt(point.x, target.position.y + targetHeight, point.z)
         camera.position.y = math.lerp(camera.position.y, target.position.y + up, interpolation)
     }
-
-
 })
 
 let setTarget = (obj) => {

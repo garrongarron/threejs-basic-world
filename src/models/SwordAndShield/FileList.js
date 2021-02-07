@@ -49,5 +49,8 @@ let fileList = [
     'sword and shield turn.fbx',//47
     'sword and shield walk (2).fbx',//48
     'sword and shield walk.fbx',//49
+    'Crouch Torch Walk Forward.fbx',//50
+    'Crouch Torch Walk Backward.fbx',//51
+    'RunAndJump.fbx',//52
 ]
 export default fileList

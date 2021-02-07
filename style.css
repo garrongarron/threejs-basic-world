@@ -1,0 +1,26 @@
+* {
+    padding: 0em;
+    margin: 0em;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.bottom-bar, .bottom-bar-background{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    padding: 1.5vw;
+    color: seashell;
+    border-radius: 2vw;
+    margin: 1vw;
+    /* box-shadow: 4px 4px 2px 1px rgba(218, 22, 8, 0.2); */
+    border: 4px solid  rgba(0,0,0, 0.5);
+}
+
+.bottom-bar-background {
+    background-color: black;
+    opacity: .5;
+    color: black;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
