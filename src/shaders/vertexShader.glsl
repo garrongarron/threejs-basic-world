@@ -1,17 +1,20 @@
-uniform float delta;
-uniform float u_octaves;
+uniform int u_octaves;
 uniform float u_amplitud;
 uniform float u_frequency;
 uniform float u_height;
+uniform float u_zoom;
 
 varying vec3 vPosition;
 varying float h;
 varying vec2 vUv;
 
 float random (in vec2 _st) {
-    return fract(sin(dot(_st.xy,
-                         vec2(12.9898,78.233)))*
-        43758.5453123);
+    return fract(
+        sin(
+            dot(_st.xy, vec2(12.9898,78.233)))
+            *
+            43758.5453123
+        );
 }
 
 float noise (in vec2 _st) {
@@ -31,9 +34,7 @@ float noise (in vec2 _st) {
             (d - b) * u.x * u.y;
 }
 
-//@todo 
-//u_octaves doesnt work
-#define NUM_OCTAVES 2
+
 
 float fbm ( in vec2 _st) {
     float outValue = 0.0;
@@ -42,7 +43,7 @@ float fbm ( in vec2 _st) {
     // Rotate to reduce axial bias
     mat2 rot = mat2(cos(0.5), sin(0.5),
                     -sin(0.5), cos(0.5));
-    for (int i = 0; i < NUM_OCTAVES; ++i) {
+    for (int i = 0; i < u_octaves; ++i) {
         outValue += amplitude * noise(_st * u_frequency);
         _st = rot * _st * 2.0 + shift;
         amplitude *= 0.5;
@@ -54,7 +55,7 @@ void main()
 {
 	vUv = uv;
 	h = u_height;
-    float y =  u_height*fbm(vec2(position.x, position.y)/u_height);
+    float y =  u_height*fbm(vec2(position.x, position.y)/u_zoom);
     vPosition = vec3(position.x, position.y, y);
 	vec4 modelViewPosition = modelViewMatrix * vec4(vPosition, 1.0);
 	gl_Position = projectionMatrix * modelViewPosition;

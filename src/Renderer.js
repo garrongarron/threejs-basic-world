@@ -3,6 +3,8 @@ import camera from './basic/Camera.js'
 import machine from './basic/Machine.js'
 import setControls from './basic/Controls.js'
 
+let stats = new Stats();
+document.body.appendChild(stats.dom)
 let renderer = new THREE.WebGLRenderer(
     { 
         //document.body.appendChild(renderer.domElement);
@@ -23,5 +25,6 @@ window.addEventListener('resize', () => {
 setControls(camera, renderer)
 machine.addCallback(() => {
     renderer.render(scene, camera);
+    stats.update()
 })
 machine.run()

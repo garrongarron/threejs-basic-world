@@ -1,5 +1,5 @@
 import shaderLoader from '../basic/ShaderLoader.js'
-
+import runPanel from '../basic/VariableHandler.js'
 //textures
 var oceanTexture = new THREE.ImageUtils.loadTexture('images/dirt-512.jpg');
 oceanTexture.wrapS = oceanTexture.wrapT = THREE.RepeatWrapping;
@@ -19,11 +19,11 @@ snowyTexture.wrapS = snowyTexture.wrapT = THREE.RepeatWrapping;
 
 //uniforms
 let customUniforms = {
-    delta: { value: 0 },
     u_octaves: { value: 2 },
     u_amplitud: { value: 0.5 },
     u_frequency: { value: 1.5 },
     u_height: { value: 100},
+    u_zoom: { value: 100},
     oceanTexture: { type: "t", value: oceanTexture },
     sandyTexture: { type: "t", value: sandyTexture },
     grassTexture: { type: "t", value: grassTexture },
@@ -31,6 +31,7 @@ let customUniforms = {
     snowyTexture: { type: "t", value: snowyTexture },
 };
 
+let plane
 
 let loadPlane = (scene) => {
     shaderLoader('vsFile', 'fsFile', (shaders) => {
@@ -40,16 +41,20 @@ let loadPlane = (scene) => {
             vertexShader: shaders[0],
             fragmentShader: shaders[1]
         });
-        let geometry = new THREE.PlaneGeometry(500, 500, 100, 100);
+        let geometry = new THREE.PlaneGeometry(1000, 1000, 100, 100);
 
-        const plane = new THREE.Mesh(
+        plane = new THREE.Mesh(
             geometry,
             material
         );
         plane.castShadow = false;
         plane.receiveShadow = true;
         plane.rotation.x = -Math.PI / 2;
+        material.onBeforeCompile = (shader) => {
+           runPanel(material, shader)
+        }
         scene.add(plane)
+        
     })
 }
 
