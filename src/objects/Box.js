@@ -1,5 +1,5 @@
 const box = new THREE.Mesh(
-    new THREE.BoxGeometry(2, 40, 2),
+    new THREE.BoxGeometry(2, 25, 2),
     new THREE.MeshStandardMaterial({
         color: 0xFFFFFF,
     }));
