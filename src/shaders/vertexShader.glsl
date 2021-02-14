@@ -50,12 +50,12 @@ float fbm ( in vec2 _st) {
     return outValue;
 }
 
-
 void main() 
 {
 	vUv = uv;
 	h = u_height;
-    vPosition = vec3(position.x, position.y,  u_height*fbm(vec2(position.x, position.y)/u_height));
+    float y =  u_height*fbm(vec2(position.x, position.y)/u_height);
+    vPosition = vec3(position.x, position.y, y);
 	vec4 modelViewPosition = modelViewMatrix * vec4(vPosition, 1.0);
 	gl_Position = projectionMatrix * modelViewPosition;
 	

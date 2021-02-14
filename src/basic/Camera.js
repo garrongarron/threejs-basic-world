@@ -4,6 +4,6 @@ const near = 1.0;
 const far = 1000.0;
 
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.set(75, 20, 0);
+camera.position.set(75, 100, 0);
 
 export default camera
