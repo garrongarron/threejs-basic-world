@@ -41,7 +41,7 @@ let getChunk = (x, z, scene, unit) => {
         vertexShader: shaders._VS,
         fragmentShader: shaders._FS
     });
-    let geometry = new THREE.PlaneGeometry(unit, unit, 50, 50);
+    let geometry = new THREE.PlaneGeometry(unit, unit, 75, 75);
     let plane = new THREE.Mesh(
         geometry,
         material
@@ -51,6 +51,7 @@ let getChunk = (x, z, scene, unit) => {
     plane.rotation.x = -Math.PI / 2;
     plane.position.x = x
     plane.position.z = z
+    plane.position.y -= customUniforms.u_height.value/3
 
     scene.add(plane);
     return {

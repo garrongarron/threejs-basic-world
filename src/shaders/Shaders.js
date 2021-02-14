@@ -75,7 +75,6 @@ uniform sampler2D sandyTexture;
 uniform sampler2D grassTexture;
 uniform sampler2D rockyTexture;
 uniform sampler2D snowyTexture;
-
 void main() {
     float vAmount = vPosition.z/h;
     vec4 water = (smoothstep(0.01, 0.25, vAmount) - smoothstep(0.24, 0.26, vAmount)) * texture2D( oceanTexture, vUv * 10.0 );

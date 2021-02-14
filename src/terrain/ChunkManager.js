@@ -11,8 +11,8 @@ let createChunks = (x, z) => {
         return
     } else {
         lastRequest = `${x}.${z}`
-        console.log(x, z);
-        console.log(chunk);
+        // console.log(x, z);
+        // console.log(chunk);
     }
     let n = 0
     for (let i = -1; i <= 1; i++) {
