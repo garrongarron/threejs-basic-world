@@ -3,11 +3,13 @@ import texture from './basic/Cube.js'
 import setSky from './basic/Sky.js'
 import setFog from './basic/Fog.js'
 import setTarget from "./basic/CameraController.js";
-import plane from './objects/Plane.js'
+import plane1 from './objects/Plane.js'
+import loadPlaneTerrain from './objects/PlaneTerrain.js'
 import box from './objects/Box.js'
 import setCharacter, { mode, setController } from './basic/CharacterController.js';
 import loadCharacter from './basic/Character.js'
 import loadTrees from './objects/Trees.js'
+// import loadPlane from './objects/Plane2.js'//shaders doesnt work
 
 const scene = new THREE.Scene();
 
@@ -26,9 +28,14 @@ if (false) {
 
 
 //trees
-loadTrees(scene)
+loadTrees(scene)//ok
+
+
 //ground
-scene.add(plane);
+// scene.add(plane1);
+// loadPlane(scene)//shaders it doesnt work
+loadPlaneTerrain(scene)
+
 
 //center
 let box2 = box.clone()
@@ -46,6 +53,16 @@ loadCharacter(scene, (palading) => {
     //character controller
     setController(mode.forwardBackwardAndRotation)
 })
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,7 @@
 import StateMachine from './StateMachine.js'
 import machine from './Machine.js'
+import gravity from '../character/Gravity.js'
+
 let speed = 3 //per second
 speed = 10 //running 
 let position
@@ -19,13 +21,13 @@ let stateDefautl = {
 let state = Object.assign({}, stateDefautl)
 let stateMachine
 
-
 class ForwardBackwardAndRotation {
 
     constructor(character) {
         position = character.position
         rotation = character.rotation
         stateMachine = new StateMachine(character)
+
 
         this.machine = machine.addCallback(() => {
             speed = 3
@@ -59,7 +61,10 @@ class ForwardBackwardAndRotation {
             position.z + Math.cos(rotation.y) * speed * deltaTime,
         )
         state.up = true
-
+        let ckecked = gravity.check(position)
+        if (ckecked.isGrounded) {
+            position.y -= ckecked.tmp.distance - 1
+        }
     }
 
     down(deltaTime) {
@@ -69,15 +74,19 @@ class ForwardBackwardAndRotation {
             position.z - Math.cos(rotation.y) * speed * deltaTime,
         )
         state.down = true
+        let ckecked = gravity.check(position)
+        if (ckecked.isGrounded) {
+            position.y -= ckecked.tmp.distance - 1
+        }
     }
 
     left(deltaTime) {
-        rotation.y += angle * deltaTime
+        rotation.y += angle * deltaTime * (1/(90 / (90 - position.y*2)))
         state.left = true
     }
 
     right(deltaTime) {
-        rotation.y -= angle * deltaTime
+        rotation.y -= angle * deltaTime * (1/(90 / (90 - position.y*2)))
         state.right = true
     }
 

@@ -14,8 +14,8 @@ let camGap = -30
 let valance = 0
 
 document.addEventListener('mousemove', (e)=>{
-    let semiScreen = window.innerWidth/2
-    valance = (e.clientX-semiScreen)/semiScreen
+    // let semiScreen = window.innerWidth/2
+    // valance = (e.clientX-semiScreen)/semiScreen
 })
 
 machine.addCallback(() => {

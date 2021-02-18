@@ -3,8 +3,8 @@ import shaders from './SkyShaders.js'
 let setSky = (scene) => {
 
     const uniforms = {
-        "topColor": { value: new THREE.Color(0x0077ff) },
-        "bottomColor": { value: new THREE.Color(0xffffff) },
+        "topColor": { value: new THREE.Color(0x00003f) },
+        "bottomColor": { value: new THREE.Color(0x000011) },
         "offset": { value: 33 },
         "exponent": { value: 0.6 }
     };

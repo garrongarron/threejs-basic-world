@@ -7,7 +7,7 @@ let loadTrees = (scene) => {
         let n = 0
         trees = trees.map(object => {
             // object.position.set(n*4, 0, 0)
-            let scale = 0.2
+            let scale = 0.06
             object.scale.set(scale, scale, scale)
             object.traverse(function (child) {
                 if (child.isMesh) {
