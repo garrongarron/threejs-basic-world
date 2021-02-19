@@ -1,4 +1,4 @@
-import Animator from './Animator.js'
+import Animator from '../basic/Animator.js'
 
 let n = 26
 let timeScale

@@ -1,6 +1,6 @@
 import scene from '../Scene.js'
 let radio = 10
-class Gravity {
+class CameraColllider {
     check(position) {
         let ray = new THREE.Raycaster(
             new THREE.Vector3(
@@ -13,6 +13,7 @@ class Gravity {
         );
 
         let tmp = ray.intersectObjects(scene.children, true).filter(obj => obj.object.name != "Box2-movil")[0]
+        // console.log(tmp);
         let isGrounded = !!tmp && tmp.distance < 10
         return {
             isGrounded: isGrounded,
@@ -21,5 +22,5 @@ class Gravity {
         }
     }
 }
-let gravity = new Gravity()
+let gravity = new CameraColllider()
 export default gravity

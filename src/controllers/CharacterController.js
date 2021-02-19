@@ -1,7 +1,7 @@
-import keyListener from './KeyListener.js'
-import machine from './Machine.js'
+import keyListener from '../basic/KeyListener.js'
+import machine from '../basic/Machine.js'
 import ForwardBackwardAndRotation from './ForwardBackwardAndRotation.js'
-import { getDelta } from './Clock.js'
+import { getDelta } from '../basic/Clock.js'
 
 let character = null
 let lastN = []

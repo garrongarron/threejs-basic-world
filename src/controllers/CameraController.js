@@ -1,6 +1,6 @@
-import camera from './Camera.js'
-import machine from './Machine.js'
-import math from './Math.js'
+import camera from '../basic/Camera.js'
+import machine from '../basic/Machine.js'
+import math from '../basic/Math.js'
 
 let target = null
 let interpolation = .5

@@ -1,5 +1,5 @@
 import StateMachine from './StateMachine.js'
-import machine from './Machine.js'
+import machine from '../basic/Machine.js'
 import gravity from '../character/Gravity.js'
 
 let speed = 3 //per second
