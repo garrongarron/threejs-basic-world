@@ -20,23 +20,25 @@ let loadTrees = (scene) => {
             return object
         });
 
-        let i = 0
-        while (i < 40) {
-            let p = {
-                x: Math.random() * 200 - 100,
-                y: 0,
-                z: Math.random() * 200 - 100
+        setTimeout(() => {
+            let i = 0
+            while (i < 40) {
+                let p = {
+                    x: Math.random() * 256 - 128,
+                    y: 0,
+                    z: Math.random() * 256 - 128
+                }
+                let g = gravity.check(p)
+                if (g.tmp) {
+                    p.y = 1 - g.tmp.distance
+                    // console.log(g.tmp.distance, p);
+                    let tree = trees[Math.floor(Math.random() * trees.length)].clone()
+                    tree.position.set(p.x, p.y, p.z)
+                    scene.add(tree)
+                    i++
+                }
             }
-            let g = gravity.check(p)
-            if (g.tmp) {
-                p.y = 1-g.tmp.distance
-                console.log(g.tmp.distance, p);
-                let tree = trees[Math.floor(Math.random() * trees.length)].clone()
-                tree.position.set(p.x, p.y, p.z)
-                scene.add(tree)
-                i++
-            }
-        }
+        }, 1000 * 5);
     }
 
     const loader = new THREE.FBXLoader();

@@ -52,6 +52,15 @@ loadCharacter(scene, (palading) => {
     mouseController(palading)
     setCharacter(palading)
     setController(mode.forwardBackwardAndRotation)
+
+
+
+
+
+
+
+
+
     /*
     setTarget(palading)//camera
     setCharacter(palading)//camera

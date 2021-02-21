@@ -1,19 +1,28 @@
 import noise from '../shaders/NoiseMaker.js'
-let plane
-let size = 500
-let loadPlaneTerrain = (scene) => {
-  const geometry = new THREE.PlaneGeometry(size, size, 100, 100);
-  // const material = new THREE.MeshBasicMaterial({ color: 0x1A48D6, side: THREE.DoubleSide });
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors });
-  plane = new THREE.Mesh(geometry, material);
-  plane.rotation.x = -Math.PI / 2;
-  plane.position.y = -1;
-  plane.castShadow = true;
-  plane.receiveShadow = true;
-  scene.add(plane);
+import loadTextures, { addCallback } from '../textures/Textures.js'
+import getBlend from '../textures/Blend.js'
 
-  //***********************************/
-  modifyTimeScale()
+let plane
+let size = 1024
+let loadPlaneTerrain = (scene) => {
+  const geometry = new THREE.PlaneGeometry(size, size, 120, 120);
+  // const material = new THREE.MeshBasicMaterial({ color: 0x1A48D6, side: THREE.DoubleSide });
+
+  addCallback((t) => {
+    console.log(t);
+    // const material = new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: THREE.VertexColors });
+    const material = getBlend();
+    plane = new THREE.Mesh(geometry, material);
+    plane.rotation.x = -Math.PI / 2;
+    plane.position.y = -1;
+    plane.castShadow = true;
+    plane.receiveShadow = true;
+    scene.add(plane);
+    let offset = { x: 0, y: 0 }
+    modifyTimeScale(offset)
+    colored(offset)
+  })
+  loadTextures()
 
 }
 const panel = new dat.GUI();
@@ -37,27 +46,28 @@ let params = {
   lacunarity: 6.9,
   exponentiation: 5.8,
   seed: 1,
-  height:200
+  height: 200
 }
 
 let gen = new noise.Noise(params)
 let sat = (x) => {
   return Math.min(Math.max(x, 0.0), 1.0);
 }
-let modifyTimeScale = () => {
-  let offset = {
-    x: 0,
-    y: 0,
-  }
 
+
+
+let modifyTimeScale = (offset) => {
   for (let v of plane.geometry.vertices) {
     const heightPairs = [];
     v.z = 0;
     v.z = gen.Get(v.x + offset.x, v.y + offset.y)
-
+    v.x += Math.random()*2-1
+    v.y += Math.random()*2-1
   }
+}
 
-  //COLORING
+let colored = (offset) => {
+  //  COLORING
   const GREEN = new THREE.Color(0x000000);
   for (let f of plane.geometry.faces) {
     const vs = [

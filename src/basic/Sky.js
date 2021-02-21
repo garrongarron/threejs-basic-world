@@ -3,10 +3,10 @@ import shaders from './SkyShaders.js'
 let setSky = (scene) => {
 
     const uniforms = {
-        "topColor": { value: new THREE.Color(0x00003f) },
-        "bottomColor": { value: new THREE.Color(0x000011) },
-        "offset": { value: 33 },
-        "exponent": { value: 0.6 }
+        "topColor": { value: new THREE.Color(0x81C1E2 ) },//0x2471A3 //0x377C9B //0x81C1E2
+        "bottomColor": { value: new THREE.Color(0xf9cf8d ) },//0xf9cf8d //0xFB9B1A
+        "offset": { value: 10 },
+        "exponent": { value: .3}
     };
 
     const skyGeo = new THREE.SphereGeometry(400, 32, 15);
